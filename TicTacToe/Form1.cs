@@ -53,11 +53,16 @@ namespace TicTacToe
         private void AI()
         {
             AiCheck();
-            if ( Spot != -1)
+            if (Spot != -1)
             {
                 labels[Spot].Image = O;
                 labels[Spot].Refresh();
                 labels[Spot].Click -= Clicks[Spot];
+                turn = 'X';
+            }
+            else 
+            {
+                
             }
         }
 
@@ -195,6 +200,11 @@ namespace TicTacToe
             {
                 PlayerTurn(8);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
