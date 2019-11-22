@@ -18,3 +18,12 @@ C:\Users\rl146129\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.Generat
 C:\Users\rl146129\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.CoreCompileInputs.cache
 C:\Users\rl146129\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
 C:\Users\rl146129\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csprojAssemblyReference.cache
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Form1.resources
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Properties.Resources.resources
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.cache
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
+C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
