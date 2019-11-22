@@ -16,6 +16,12 @@ namespace TicTacToe
         List<EventHandler> Clicks = new List<EventHandler>();
         Random rand = new Random();
         int Spot = -1;
+        Char Winner;
+        int playerWins;
+        int CompWins;
+        char[,] Board = new char[3,3] {
+        };
+
 
         public Form1()
         {
@@ -42,27 +48,57 @@ namespace TicTacToe
 
         private void PlayerTurn(int pos)
         {
-            labels[pos].Image = X;
-            labels[pos].Refresh();
-            labels[pos].Click -= Clicks[pos];
-            Board[pos] = 'X';
-            turn = '0';
-            AI();
+            if (Check() == false)
+            {
+                labels[pos].Image = X;
+                labels[pos].Refresh();
+                labels[pos].Click -= Clicks[pos];
+                Board[pos] = 'X';
+                turn = '0';
+                AI();
+            }
+            else
+            {
+                ScoreBoard();
+                Console.WriteLine(playerWins);
+            }
 
         }
         private void AI()
         {
-            AiCheck();
-            if (Spot != -1)
+            if (Check() == false)
             {
-                labels[Spot].Image = O;
-                labels[Spot].Refresh();
-                labels[Spot].Click -= Clicks[Spot];
-                turn = 'X';
+                AiCheck();
+                if (Spot != -1)
+                {
+                    labels[Spot].Image = O;
+                    labels[Spot].Refresh();
+                    labels[Spot].Click -= Clicks[Spot];
+                    Board[Spot] = 'O';
+                    turn = 'X';
+                    Spot = -1;
+                }
+                else
+                {
+                    Spot = rand.Next(9);
+
+                    while (Board[Spot] != ' ')
+                    {
+                        Spot = rand.Next(9);
+                    }
+
+                    labels[Spot].Image = O;
+                    labels[Spot].Refresh();
+                    labels[Spot].Click -= Clicks[Spot];
+                    Board[Spot] = 'O';
+                    turn = 'X';
+                    Spot = -1;
+                }
+
             }
-            else 
+            else
             {
-                
+                ScoreBoard();
             }
         }
 
@@ -72,12 +108,14 @@ namespace TicTacToe
                 Board[0] == 'X' && Board[3] == 'X' && Board[6] == 'X' || Board[1] == 'X' && Board[4] == 'X' && Board[7] == 'X' || Board[2] == 'X' && Board[5] == 'X' && Board[8] == 'X' ||
                 Board[0] == 'X' && Board[4] == 'X' && Board[8] == 'X' || Board[6] == 'X' && Board[4] == 'X' && Board[2] == 'X')
             {
+                Char Winner = 'X';
                 return true;
             }
             else if (Board[0] == 'O' && Board[1] == 'O' && Board[2] == 'O' || Board[3] == 'O' && Board[4] == 'O' && Board[5] == 'O' || Board[6] == 'O' && Board[7] == 'O' && Board[8] == 'O' ||
                 Board[0] == 'O' && Board[3] == 'O' && Board[6] == 'O' || Board[1] == 'O' && Board[4] == 'O' && Board[7] == 'O' || Board[2] == 'O' && Board[5] == 'O' && Board[8] == 'O' ||
                 Board[0] == 'O' && Board[4] == 'O' && Board[8] == 'O' || Board[6] == 'O' && Board[4] == 'O' && Board[2] == 'O')
             {
+                Char Winner = 'O';
                 return true;
             }
             else
@@ -125,6 +163,18 @@ namespace TicTacToe
             else if (Board[5] == 'X' && Board[2] == 'X' && Board[8] != 'O' || Board[7] == 'X' && Board[6] == 'X' && Board[8] != 'O' || Board[0] == 'X' && Board[4] == 'X' && Board[8] != 'O')
             {
                 Spot = 8;
+            }
+        }
+
+        private void ScoreBoard()
+        {
+            if (Winner == 'X')
+            {
+                playerWins++;
+            }
+            else
+            {
+                CompWins++;
             }
         }
 
