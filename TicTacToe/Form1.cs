@@ -12,21 +12,35 @@ namespace TicTacToe
 {
     public partial class Form1 : Form
     {
-        Label[] labels;
         List<EventHandler> Clicks = new List<EventHandler>();
         Random rand = new Random();
         int Spot = -1;
         Char Winner;
+        bool win = false;
         int playerWins;
         int CompWins;
-        char[,] Board = new char[3,3] {
-        };
-
+        Label[][] board1;
+        Label[] Row1;
+        Label[] Row2;
+        Label[] Row3;
+        Label[] diagonal1;
+        Label[] diagonal2;
+        int x = 0;
+        int y = 0;
+        Label[] labels;
 
         public Form1()
         {
             InitializeComponent();
+            Row1 = new Label[] { label1, label2, label3 };
+            Row2 = new Label[] { label4, label5, label6 };
+            Row3 = new Label[] { label7, label8, label9 };
+            board1 = new Label[][] { Row1, Row2, Row3 };
+            diagonal1 = new Label[] { label1, label5, label9 };
+            diagonal2 = new Label[] { label3, label5, label7 };
             labels = new Label[] { label1, label2, label3, label4, label5, label6, label7, label8, label9 };
+
+
             Clicks.Add(label1_Click);
             Clicks.Add(label2_Click);
             Clicks.Add(label3_Click);
@@ -46,13 +60,13 @@ namespace TicTacToe
 
         char turn = 'X';
 
-        private void PlayerTurn(int pos)
+        private void PlayerTurn(int x,int y,int pos)
         {
-            if (Check() == false)
+            if (!win)
             {
-                labels[pos].Image = X;
-                labels[pos].Refresh();
-                labels[pos].Click -= Clicks[pos];
+                board1[x][y].Image = X;
+                board1[x][y].Refresh();
+                board1[x][y].Click -= Clicks[pos];
                 Board[pos] = 'X';
                 turn = '0';
                 AI();
@@ -66,16 +80,18 @@ namespace TicTacToe
         }
         private void AI()
         {
-            if (Check() == false)
+            
+            if (!win)
             {
                 AiCheck();
                 if (Spot != -1)
                 {
-                    labels[Spot].Image = O;
-                    labels[Spot].Refresh();
-                    labels[Spot].Click -= Clicks[Spot];
-                    Board[Spot] = 'O';
-                    turn = 'X';
+                    xandy(Spot);
+
+                    board1[x][y].Image = O;
+                    board1[x][y].Refresh();
+                    board1[x][y].Click -= Clicks[Spot];
+                    Board[Spot] = 'X';
                     Spot = -1;
                 }
                 else
@@ -87,9 +103,11 @@ namespace TicTacToe
                         Spot = rand.Next(9);
                     }
 
-                    labels[Spot].Image = O;
-                    labels[Spot].Refresh();
-                    labels[Spot].Click -= Clicks[Spot];
+                    xandy(Spot);
+
+                    board1[x][y].Image = O;
+                    board1[x][y].Refresh();
+                    board1[x][y].Click -= Clicks[Spot];
                     Board[Spot] = 'O';
                     turn = 'X';
                     Spot = -1;
@@ -102,67 +120,132 @@ namespace TicTacToe
             }
         }
 
-        private bool Check()
+        private void xandy(int Spot)
         {
-            if (Board[0]=='X' && Board[1] == 'X' && Board[2] == 'X' || Board[3] == 'X' && Board[4] == 'X' && Board[5] == 'X' || Board[6] == 'X' && Board[7] == 'X' && Board[8] == 'X' ||
-                Board[0] == 'X' && Board[3] == 'X' && Board[6] == 'X' || Board[1] == 'X' && Board[4] == 'X' && Board[7] == 'X' || Board[2] == 'X' && Board[5] == 'X' && Board[8] == 'X' ||
-                Board[0] == 'X' && Board[4] == 'X' && Board[8] == 'X' || Board[6] == 'X' && Board[4] == 'X' && Board[2] == 'X')
+            if (Spot == 0)
             {
-                Char Winner = 'X';
-                return true;
+                x = 0;
+                y = 0;
             }
-            else if (Board[0] == 'O' && Board[1] == 'O' && Board[2] == 'O' || Board[3] == 'O' && Board[4] == 'O' && Board[5] == 'O' || Board[6] == 'O' && Board[7] == 'O' && Board[8] == 'O' ||
-                Board[0] == 'O' && Board[3] == 'O' && Board[6] == 'O' || Board[1] == 'O' && Board[4] == 'O' && Board[7] == 'O' || Board[2] == 'O' && Board[5] == 'O' && Board[8] == 'O' ||
-                Board[0] == 'O' && Board[4] == 'O' && Board[8] == 'O' || Board[6] == 'O' && Board[4] == 'O' && Board[2] == 'O')
+            else if (Spot == 1)
             {
-                Char Winner = 'O';
-                return true;
+                x = 0;
+                y = 1;
+            }
+            else if (Spot == 2)
+            {
+                x = 0;
+                y = 2;
+            }
+            else if (Spot == 3)
+            {
+                x = 1;
+                y = 0;
+            }
+            else if (Spot == 4)
+            {
+                x = 1;
+                y = 1;
+            }
+            else if (Spot == 5)
+            {
+                x = 1;
+                y = 2;
+            }
+            else if (Spot == 6)
+            {
+                x = 2;
+                y = 0;
+            }
+            else if (Spot == 7)
+            {
+                x = 2;
+                y = 1;
             }
             else
             {
-                return false;
+                x = 2;
+                y = 2;
+            }
+        }
+
+        private void Check()
+        {
+            string prev = "null";
+            bool same = true;
+
+            string[] prev1 = new string[] {"null","null","null"};
+            bool[] same1 = new bool[] { true, true, true };
+
+            foreach (Label label in labels)
+            {
+                if (prev == "null")
+                    prev = label.Text;
+                else if (prev != label.Text ||label.Text =="")
+                    same = false;
+            }
+            if (same && prev != "null")
+            {
+                return;
+            }
+            same = true;
+            prev = "null";
+            if (prev1[0] == "null")
+                prev1[0] = labels[0].Text;
+            else if (prev1[0] != labels[0].Text || labels[0].Text == "")
+                same1[0] = false;
+
+            if (prev1[1] == "null")
+                prev1[1] = labels[1].Text;
+            else if (prev1[1] != labels[1].Text || labels[1].Text == "")
+                same1[1] = false;
+
+            if (prev1[2] == "null")
+                prev1[2] = labels[2].Text;
+            else if (prev1[2] != labels[2].Text || labels[2].Text == "")
+                same1[2] = false;
+
+            string prev2 = "null";
+            bool same2 = true;
+            foreach (Label label in diagonal1)
+            {
+                if (prev2 == "null")
+                    prev2 = label.Text;
+                else if (prev2 != label.Text || label.Text == "")
+                    same2 = false;
+            }
+
+            if (same2 && prev2 != "null")
+            {
+                return;
+            }
+
+            prev2 = "null";
+            same2 = true;
+            foreach (Label label in diagonal2)
+            {
+                if (prev2 == "null")
+                    prev2 = label.Text;
+                else if (prev2 != label.Text || label.Text == "")
+                    same2 = false;
+            }
+
+            if (same2 && prev2 != "null")
+            {
+                return;
             }
         }
 
         private void AiCheck()
         {
-            if (Board[0] == 'X' && Board[1] == 'X' && Board[2] != 'O' || Board[5] == 'X' && Board[8] == 'X' && Board[2] != 'O' || Board[4] == 'X' && Board[6] == 'X' && Board[2] != 'O')
+            string prev = "null";
+            bool same = true;
+            foreach (Label label in diagonal1)
             {
-                Spot = 2;
+                if (prev == "null")
+                {
 
-            }
-            else if (Board[0] == 'X' && Board[2] == 'X' && Board[1] != 'O' || Board[4] == 'X' && Board[7] == 'X' && Board[1] != 'O')
-            {
-                Spot = 1;
-            }
-            else if (Board[1] == 'X' && Board[2] == 'X' && Board[0] != 'O' || Board[3] == 'X' && Board[6] == 'X' && Board[0] != 'O' || Board[4] == 'X' && Board[8] == 'X' && Board[0] != 'O')
-            {
-                Spot = 0;
-            }
-            else if (Board[0] == 'X' && Board[6] == 'X' && Board[3] != 'O' || Board[4] == 'X' && Board[5] == 'X' && Board[3] != 'O')
-            {
-                Spot = 3;
-            }
-            else if (Board[3] == 'X' && Board[5] == 'X' && Board[4] != 'O' || Board[0] == 'X' && Board[8] == 'X' && Board[4] != 'O' || Board[2] == 'X' && Board[6] == 'X' && Board[4] != 'O'||
-                Board[1] == 'X' && Board[7] == 'X' && Board[4] != 'O')
-            {
-                Spot = 4;
-            }
-            else if (Board[2] == 'X' && Board[8] == 'X' && Board[5] != 'O' || Board[4] == 'X' && Board[3] == 'X' && Board[5] != 'O')
-            {
-                Spot = 5;
-            }
-            else if (Board[0] == 'X' && Board[3] == 'X' && Board[6] != 'O' || Board[7] == 'X' && Board[8] == 'X' && Board[6] != 'O' || Board[2] == 'X' && Board[4] == 'X' && Board[6] != 'O')
-            {
-                Spot = 6;
-            }
-            else if (Board[1] == 'X' && Board[4] == 'X' && Board[7] != 'O' || Board[6] == 'X' && Board[8] == 'X' && Board[7] != 'O')
-            {
-                Spot = 7;
-            }
-            else if (Board[5] == 'X' && Board[2] == 'X' && Board[8] != 'O' || Board[7] == 'X' && Board[6] == 'X' && Board[8] != 'O' || Board[0] == 'X' && Board[4] == 'X' && Board[8] != 'O')
-            {
-                Spot = 8;
+                }
             }
         }
 
@@ -181,74 +264,74 @@ namespace TicTacToe
         private void label1_Click(object sender, EventArgs e)
         {
 
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(0);
+                PlayerTurn(0,0,0);
             }
 
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(1);
+                PlayerTurn(0, 1, 1);
             }
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(2);
+                PlayerTurn(0, 2, 2);
             }
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(3);
+                PlayerTurn(1, 0, 3);
             }
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(4);
+                PlayerTurn(1,1,4);
             }
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(5);
+                PlayerTurn(1,2,5);
             }
         }
 
         private void label7_Click(object sender, EventArgs e)
         {
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(6);
+                PlayerTurn(2,0,6);
             }
         }
 
         private void label8_Click(object sender, EventArgs e)
         {
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(7);
+                PlayerTurn(2, 1, 7);
             }
         }
 
         private void label9_Click(object sender, EventArgs e)
         {
-            if (turn == 'X' && Check() == false)
+            if (turn == 'X' && !win)
             {
-                PlayerTurn(8);
+                PlayerTurn(2, 2, 8);
             }
         }
 
