@@ -15,7 +15,7 @@ namespace TicTacToe
         List<EventHandler> Clicks = new List<EventHandler>();
         Random rand = new Random();
         int Spot = -1;
-        Char Winner;
+        String Winner;
         bool win = false;
         int playerWins;
         int CompWins;
@@ -65,16 +65,17 @@ namespace TicTacToe
             if (!win)
             {
                 board1[x][y].Image = X;
-                board1[x][y].Refresh();
                 board1[x][y].Click -= Clicks[pos];
+                board1[x][y].Refresh();
+                board1[x][y].Text = "X";
                 Board[pos] = 'X';
                 turn = '0';
+                Check();
                 AI();
             }
             else
             {
                 ScoreBoard();
-                Console.WriteLine(playerWins);
             }
 
         }
@@ -89,10 +90,12 @@ namespace TicTacToe
                     xandy(Spot);
 
                     board1[x][y].Image = O;
-                    board1[x][y].Refresh();
                     board1[x][y].Click -= Clicks[Spot];
-                    Board[Spot] = 'X';
+                    board1[x][y].Refresh();
+                    board1[x][y].Text = "O";
+                    Board[Spot] = 'O';
                     Spot = -1;
+                    Check();
                 }
                 else
                 {
@@ -106,11 +109,13 @@ namespace TicTacToe
                     xandy(Spot);
 
                     board1[x][y].Image = O;
-                    board1[x][y].Refresh();
                     board1[x][y].Click -= Clicks[Spot];
+                    board1[x][y].Refresh();
+                    board1[x][y].Text = "O";
                     Board[Spot] = 'O';
                     turn = 'X';
                     Spot = -1;
+                    Check();
                 }
 
             }
@@ -173,37 +178,63 @@ namespace TicTacToe
         {
             string prev = "null";
             bool same = true;
-
             string[] prev1 = new string[] {"null","null","null"};
             bool[] same1 = new bool[] { true, true, true };
 
-            foreach (Label label in labels)
+            foreach (Label[] labels in board1)
             {
-                if (prev == "null")
-                    prev = label.Text;
-                else if (prev != label.Text ||label.Text =="")
-                    same = false;
+
+                foreach (Label label in labels)
+                {
+                    if (prev == "null")
+                        prev = label.Text;
+                    else if (prev != label.Text || label.Text == "")
+                        same = false;
+                }
+
+                if (same && prev != "null")
+                {
+                    win = true;
+                    return;
+                }
+                same = true;
+                prev = "null";
+
+
+
+                if (prev1[0] == "null")
+                    prev1[0] = labels[0].Text;
+                else if (prev1[0] != labels[0].Text || labels[0].Text == "")
+                    same1[0] = false;
+
+                if (prev1[1] == "null")
+                    prev1[1] = labels[1].Text;
+                else if (prev1[1] != labels[1].Text || labels[1].Text == "")
+                    same1[1] = false;
+
+                if (prev1[2] == "null")
+                    prev1[2] = labels[2].Text;
+                else if (prev1[2] != labels[2].Text || labels[2].Text == "")
+                    same1[2] = false;
             }
-            if (same && prev != "null")
+            if (same1[0] && prev1[0] != "null")
             {
+                win = true;
                 return;
             }
-            same = true;
-            prev = "null";
-            if (prev1[0] == "null")
-                prev1[0] = labels[0].Text;
-            else if (prev1[0] != labels[0].Text || labels[0].Text == "")
-                same1[0] = false;
 
-            if (prev1[1] == "null")
-                prev1[1] = labels[1].Text;
-            else if (prev1[1] != labels[1].Text || labels[1].Text == "")
-                same1[1] = false;
+            if (same1[1] && prev1[01] != "null")
+            {
+                win = true;
+                return;
+            }
 
-            if (prev1[2] == "null")
-                prev1[2] = labels[2].Text;
-            else if (prev1[2] != labels[2].Text || labels[2].Text == "")
-                same1[2] = false;
+
+            if (same1[2] && prev1[2] != "null")
+            {
+                win = true;
+                return;
+            }
 
             string prev2 = "null";
             bool same2 = true;
@@ -217,6 +248,7 @@ namespace TicTacToe
 
             if (same2 && prev2 != "null")
             {
+                win = true;
                 return;
             }
 
@@ -232,6 +264,7 @@ namespace TicTacToe
 
             if (same2 && prev2 != "null")
             {
+                win = true;
                 return;
             }
         }
@@ -251,13 +284,26 @@ namespace TicTacToe
 
         private void ScoreBoard()
         {
-            if (Winner == 'X')
+            if (Winner == "X")
             {
                 playerWins++;
             }
             else
             {
                 CompWins++;
+            }
+            int i = 0;
+            foreach (Label label in labels)
+            {
+                label.Image = null;
+                label.Click += Clicks[i];
+                label.Refresh();
+                label.Text = "";
+                Board[i] = ' ';
+                i++;
+                win = false;
+                Winner = "null";
+                turn = 'X';
             }
         }
 
@@ -338,6 +384,23 @@ namespace TicTacToe
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+                            int i = 0;
+            foreach (Label label in labels)
+            {
+                label.Image = null;
+                label.Click += Clicks[i];
+                label.Refresh();
+                label.Text = "";
+                Board[i] = ' ';
+                i++;
+                win = false;
+                Winner = "null";
+                turn = 'X';
+            }
         }
     }
 }
