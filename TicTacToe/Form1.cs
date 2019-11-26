@@ -28,6 +28,7 @@ namespace TicTacToe
         int x = 0;
         int y = 0;
         Label[] labels;
+        bool draw = true;
 
         public Form1()
         {
@@ -62,67 +63,60 @@ namespace TicTacToe
 
         private void PlayerTurn(int x,int y,int pos)
         {
-            if (!win)
-            {
-                board1[x][y].Image = X;
-                board1[x][y].Click -= Clicks[pos];
-                board1[x][y].Refresh();
-                board1[x][y].Text = "X";
-                Board[pos] = 'X';
-                turn = '0';
-                Check();
-                AI();
-            }
-            else
-            {
-                ScoreBoard();
-            }
-
+            Check();
+            board1[x][y].Image = X;
+            board1[x][y].Click -= Clicks[pos];
+            board1[x][y].Refresh();
+            board1[x][y].Text = "X";
+            Board[pos] = 'X';
+            turn = 'O';
+            Check();
+            AI();
         }
         private void AI()
         {
-            
             if (!win)
             {
-                if (Spot != -1)
+                if (turn == 'O')
                 {
-                    xandy(Spot);
-
-                    board1[x][y].Image = O;
-                    board1[x][y].Click -= Clicks[Spot];
-                    board1[x][y].Refresh();
-                    board1[x][y].Text = "O";
-                    Board[Spot] = 'O';
-                    Spot = -1;
-                    Check();
-                }
-                else
-                {
-                    Spot = rand.Next(9);
-
-                    while (Board[Spot] != ' ')
+                    if (Spot != -1)
                     {
-                        Spot = rand.Next(9);
+                        Check();
+                        xandy(Spot);
+                        board1[x][y].Image = O;
+                        board1[x][y].Click -= Clicks[Spot];
+                        board1[x][y].Refresh();
+                        board1[x][y].Text = "O";
+                        Board[Spot] = 'O';
+                        Spot = -1;
+                        turn = 'X';
+                        Check();
                     }
+                    else
+                    {
+                        Check();
+                        Spot = rand.Next(9);
 
-                    xandy(Spot);
+                        while (Board[Spot] != ' ')
+                        {
+                            Spot = rand.Next(9);
+                        }
 
-                    board1[x][y].Image = O;
-                    board1[x][y].Click -= Clicks[Spot];
-                    board1[x][y].Refresh();
-                    board1[x][y].Text = "O";
-                    Board[Spot] = 'O';
-                    turn = 'X';
-                    Spot = -1;
-                    Check();
+                        xandy(Spot);
+
+                        board1[x][y].Image = O;
+                        board1[x][y].Click -= Clicks[Spot];
+                        board1[x][y].Refresh();
+                        board1[x][y].Text = "O";
+                        Board[Spot] = 'O';
+                        turn = 'X';
+                        Spot = -1;
+                        Check();
+                    }
                 }
-
             }
-            else
-            {
-                ScoreBoard();
-            }
-        }
+            else ScoreBoard();
+    }
 
         private void xandy(int Spot)
         {
@@ -175,6 +169,7 @@ namespace TicTacToe
 
         private void Check()
         {
+            draw = true;
             string prev = "null";
             bool same = true;
             string[] prev1 = new string[] { "null", "null", "null" };
@@ -195,6 +190,7 @@ namespace TicTacToe
                 {
                     win = true;
                     Winner = prev;
+                    ScoreBoard();
                 }
                 same = true;
                 prev = "null";
@@ -220,12 +216,14 @@ namespace TicTacToe
             {
                 win = true;
                 Winner = prev1[0];
+                ScoreBoard();
             }
 
             if (same1[1] && prev1[01] != "null")
             {
                 win = true;
                 Winner = prev1[1];
+                ScoreBoard();
             }
 
 
@@ -233,6 +231,7 @@ namespace TicTacToe
             {
                 win = true;
                 Winner = prev1[2];
+                ScoreBoard();
             }
 
             string prev2 = "null";
@@ -249,6 +248,7 @@ namespace TicTacToe
             {
                 win = true;
                 Winner = prev2;
+                ScoreBoard();
             }
 
             prev2 = "null";
@@ -265,6 +265,25 @@ namespace TicTacToe
             {
                 win = true;
                 Winner = prev2;
+                ScoreBoard();
+            }
+
+            foreach (Label label in labels)
+            {
+                if (label.Text == "")
+                {
+                    draw = false;
+                }
+                else
+                    Console.WriteLine(label.Text);
+            }
+            Console.WriteLine("Next:");
+
+            if (draw)
+            {
+                win = true;
+                Console.WriteLine("Test");
+                reset();
             }
         }
         private void ScoreBoard()
@@ -279,27 +298,8 @@ namespace TicTacToe
                 CompWins++;
                 label13.Text = $"{CompWins}";
             }
-
-
-            int i = 0;
-            int j = 0;
-            foreach (Label label1 in labels)
-            {
-                label1.Click -= Clicks[j];
-                j++;
-            }
-            foreach (Label label in labels)
-            {
-                label.Image = null;
-                label.Click += Clicks[i];
-                label.Refresh();
-                label.Text = "";
-                Board[i] = ' ';
-                i++;
-                win = false;
-                Winner = "null";
-                turn = 'X';
-            }
+            reset();
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -383,7 +383,17 @@ namespace TicTacToe
 
         private void button1_Click(object sender, EventArgs e)
         {
-                            int i = 0;
+            reset();
+        }
+        private void reset()
+        {
+            int i = 0;
+            int j = 0;
+            foreach (Label label1 in labels)
+            {
+                label1.Click -= Clicks[j];
+                j++;
+            }
             foreach (Label label in labels)
             {
                 label.Image = null;
@@ -399,3 +409,4 @@ namespace TicTacToe
         }
     }
 }
+
