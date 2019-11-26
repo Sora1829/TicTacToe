@@ -84,7 +84,6 @@ namespace TicTacToe
             
             if (!win)
             {
-                AiCheck();
                 if (Spot != -1)
                 {
                     xandy(Spot);
@@ -178,7 +177,7 @@ namespace TicTacToe
         {
             string prev = "null";
             bool same = true;
-            string[] prev1 = new string[] {"null","null","null"};
+            string[] prev1 = new string[] { "null", "null", "null" };
             bool[] same1 = new bool[] { true, true, true };
 
             foreach (Label[] labels in board1)
@@ -195,7 +194,7 @@ namespace TicTacToe
                 if (same && prev != "null")
                 {
                     win = true;
-                    return;
+                    Winner = prev;
                 }
                 same = true;
                 prev = "null";
@@ -220,20 +219,20 @@ namespace TicTacToe
             if (same1[0] && prev1[0] != "null")
             {
                 win = true;
-                return;
+                Winner = prev1[0];
             }
 
             if (same1[1] && prev1[01] != "null")
             {
                 win = true;
-                return;
+                Winner = prev1[1];
             }
 
 
             if (same1[2] && prev1[2] != "null")
             {
                 win = true;
-                return;
+                Winner = prev1[2];
             }
 
             string prev2 = "null";
@@ -249,7 +248,7 @@ namespace TicTacToe
             if (same2 && prev2 != "null")
             {
                 win = true;
-                return;
+                Winner = prev2;
             }
 
             prev2 = "null";
@@ -265,34 +264,30 @@ namespace TicTacToe
             if (same2 && prev2 != "null")
             {
                 win = true;
-                return;
+                Winner = prev2;
             }
         }
-
-        private void AiCheck()
-        {
-            string prev = "null";
-            bool same = true;
-            foreach (Label label in diagonal1)
-            {
-                if (prev == "null")
-                {
-
-                }
-            }
-        }
-
         private void ScoreBoard()
         {
             if (Winner == "X")
             {
                 playerWins++;
+                label12.Text = $"{playerWins}";
             }
-            else
+            else if (Winner== "O")
             {
                 CompWins++;
+                label13.Text = $"{CompWins}";
             }
+
+
             int i = 0;
+            int j = 0;
+            foreach (Label label1 in labels)
+            {
+                label1.Click -= Clicks[j];
+                j++;
+            }
             foreach (Label label in labels)
             {
                 label.Image = null;
