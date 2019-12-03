@@ -19,7 +19,7 @@ namespace TicTacToe
         bool win = false;
         int playerWins;
         int CompWins;
-        Label[][] board1;
+        public Label[][] board1;
         Label[] Row1;
         Label[] Row2;
         Label[] Row3;
@@ -82,7 +82,7 @@ namespace TicTacToe
                     if (Spot != -1)
                     {
                         Check();
-                        xandy(Spot);
+                        SplitSpot(Spot);
                         board1[x][y].Image = O;
                         board1[x][y].Click -= Clicks[Spot];
                         board1[x][y].Refresh();
@@ -102,7 +102,7 @@ namespace TicTacToe
                             Spot = rand.Next(9);
                         }
 
-                        xandy(Spot);
+                        SplitSpot(Spot);
 
                         board1[x][y].Image = O;
                         board1[x][y].Click -= Clicks[Spot];
@@ -118,7 +118,7 @@ namespace TicTacToe
             else ScoreBoard();
     }
 
-        private void xandy(int Spot)
+        private void SplitSpot(int Spot)
         {
             if (Spot == 0)
             {
