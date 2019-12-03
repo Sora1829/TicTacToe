@@ -14,7 +14,7 @@ namespace TicTacToe
     {
         List<EventHandler> Clicks = new List<EventHandler>();
         Random rand = new Random();
-        int Spot = -1;
+        public int Spot = -1;
         String Winner;
         bool win = false;
         int playerWins;
@@ -25,10 +25,14 @@ namespace TicTacToe
         Label[] Row3;
         Label[] diagonal1;
         Label[] diagonal2;
+        Label[] Columun1;
+        Label[] Columun2;
+        Label[] Columun3;
         int x = 0;
         int y = 0;
         Label[] labels;
         bool draw = true;
+        AI ai;
 
         public Form1()
         {
@@ -39,7 +43,12 @@ namespace TicTacToe
             board1 = new Label[][] { Row1, Row2, Row3 };
             diagonal1 = new Label[] { label1, label5, label9 };
             diagonal2 = new Label[] { label3, label5, label7 };
+            Columun1 = new Label[] {label1,label4,label7};
+            Columun2 = new Label[] { label2, label5, label8 };
+            Columun3 = new Label[] { label3, label6, label9 };
+
             labels = new Label[] { label1, label2, label3, label4, label5, label6, label7, label8, label9 };
+            ai = new AI(board1,diagonal1,diagonal2,Columun1,Columun2,Columun3);
 
 
             Clicks.Add(label1_Click);
@@ -61,6 +70,7 @@ namespace TicTacToe
 
         char turn = 'X';
 
+        // Player turn
         private void PlayerTurn(int x,int y,int pos)
         {
             Check();
@@ -71,12 +81,15 @@ namespace TicTacToe
             Board[pos] = 'X';
             turn = 'O';
             Check();
-            AI();
+            Ai();
         }
-        private void AI()
+
+        //Ai turn
+        private void Ai()
         {
             if (!win)
             {
+                Spot = ai.AICheck(Spot);
                 if (turn == 'O')
                 {
                     if (Spot != -1)
@@ -167,6 +180,7 @@ namespace TicTacToe
             }
         }
 
+        //Checking if someone has won/drawn
         private void Check()
         {
             draw = true;
@@ -175,6 +189,7 @@ namespace TicTacToe
             string[] prev1 = new string[] { "null", "null", "null" };
             bool[] same1 = new bool[] { true, true, true };
 
+            //Checks Rows
             foreach (Label[] labels in board1)
             {
 
@@ -196,7 +211,7 @@ namespace TicTacToe
                 prev = "null";
 
 
-
+                //Checks Collumns
                 if (prev1[0] == "null")
                     prev1[0] = labels[0].Text;
                 else if (prev1[0] != labels[0].Text || labels[0].Text == "")
@@ -234,6 +249,8 @@ namespace TicTacToe
                 ScoreBoard();
             }
 
+
+            //Checks Diagonals 1 and 2
             string prev2 = "null";
             bool same2 = true;
             foreach (Label label in diagonal1)
@@ -286,6 +303,8 @@ namespace TicTacToe
                 reset();
             }
         }
+
+        //Updates Scoreboard and calls reset
         private void ScoreBoard()
         {
             if (Winner == "X")
@@ -302,6 +321,7 @@ namespace TicTacToe
             
         }
 
+        //Start button Click Events
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -375,16 +395,20 @@ namespace TicTacToe
                 PlayerTurn(2, 2, 8);
             }
         }
+        //End of Button Clicks
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
+        //reset button at bottom of screen
         private void button1_Click(object sender, EventArgs e)
         {
             reset();
         }
+
+        //Resets board and buttons.
         private void reset()
         {
             int i = 0;
