@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,9 @@ namespace TicTacToe
         Label[] labels;
         bool draw = true;
         AI ai;
+        static List<string> Names = new List<string>();
+        static List<string> Scores = new List<string>();
+        static List<string> CompScores = new List<string>();
 
         public Form1()
         {
@@ -73,15 +77,19 @@ namespace TicTacToe
         // Player turn
         private void PlayerTurn(int x,int y,int pos)
         {
-            Check();
-            board1[x][y].Image = X;
-            board1[x][y].Click -= Clicks[pos];
-            board1[x][y].Refresh();
-            board1[x][y].Text = "X";
-            Board[pos] = 'X';
-            turn = 'O';
-            Check();
-            Ai();
+            if (textBox1.Text != "")
+            {
+                Check();
+                board1[x][y].Image = X;
+                board1[x][y].Click -= Clicks[pos];
+                board1[x][y].Refresh();
+                board1[x][y].Text = "X";
+                Board[pos] = 'X';
+                turn = 'O';
+                Check();
+                Ai();
+            }
+
         }
 
         //Ai turn
@@ -430,6 +438,39 @@ namespace TicTacToe
                 Winner = "null";
                 turn = 'X';
             }
+        }
+
+        public static void ReadScores()
+        {
+            using (var reader = new StreamReader("Scores.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    
+
+                    //Names.Add(values[0]);
+                    //Scores.Add(values[1]);
+                    //CompScores.Add(values[2]);
+                }
+            }
+            //Console.WriteLine(Names[0]);
+            //Console.WriteLine(Scores[0]);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (var writer = new StreamWriter("Scores.csv"))
+            {
+                var csv = string.Format("{0},{1},{2}", textBox1.Text, playerWins, CompWins);
+                writer.Write(csv.ToString());
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ReadScores();
         }
     }
 }
