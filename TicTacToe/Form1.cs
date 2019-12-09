@@ -37,6 +37,10 @@ namespace TicTacToe
         static List<string> Names = new List<string>();
         static List<string> Scores = new List<string>();
         static List<string> CompScores = new List<string>();
+        Label[] names;
+        Label[] PlayerWins;
+        Label[] COMPWins;
+
 
         public Form1()
         {
@@ -50,6 +54,9 @@ namespace TicTacToe
             Columun1 = new Label[] {label1,label4,label7};
             Columun2 = new Label[] { label2, label5, label8 };
             Columun3 = new Label[] { label3, label6, label9 };
+            names = new Label[] {label31,label28 };
+
+
 
             labels = new Label[] { label1, label2, label3, label4, label5, label6, label7, label8, label9 };
             ai = new AI(board1,diagonal1,diagonal2,Columun1,Columun2,Columun3);
@@ -440,7 +447,25 @@ namespace TicTacToe
             }
         }
 
-        public static void ReadScores()
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var csv = string.Format("{0},{1},{2}", textBox1.Text, playerWins, CompWins);
+            File.AppendAllText("Scores.csv", csv.ToString());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form2 newMDIChild = new Form2();
+            // Set the Parent Form of the Child window.
+            newMDIChild.MdiParent = this;
+            // Display the new form.
+            newMDIChild.Show();
+            
+            panel1.Visible = true;
+        }
+        private void ReadScores()
         {
             using (var reader = new StreamReader("Scores.csv"))
             {
@@ -448,30 +473,33 @@ namespace TicTacToe
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    
 
-                    //Names.Add(values[0]);
-                    //Scores.Add(values[1]);
-                    //CompScores.Add(values[2]);
+
+                    Names.Add(values[0]);
+                    Scores.Add(values[1]);
+                    CompScores.Add(values[2]);
                 }
             }
-            //Console.WriteLine(Names[0]);
-            //Console.WriteLine(Scores[0]);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (var writer = new StreamWriter("Scores.csv"))
+            int j = 0;
+            if (Names.Count() > 5)
             {
-                var csv = string.Format("{0},{1},{2}", textBox1.Text, playerWins, CompWins);
-                writer.Write(csv.ToString());
+                j = 5;
+            }
+            else
+            {
+                j = Names.Count();
+            }
+
+
+            for (int i = 0; i < j; i++)
+            {
+                names[i].Text = Names[i];
+                PlayerWins[i].Text = Scores[i];
+                COMPWins[i].Text = CompScores[i];
             }
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ReadScores();
-        }
+    }
+}
     }
 }
 
