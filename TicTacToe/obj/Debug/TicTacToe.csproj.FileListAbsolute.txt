@@ -27,4 +27,3 @@ C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Properties.Res
 C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.cache
 C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
 C:\Users\thezo\Desktop\C#\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
-C:\Users\rl146129\Desktop\C-Sharp-Projects\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Form2.resources
