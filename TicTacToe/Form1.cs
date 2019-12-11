@@ -21,6 +21,7 @@ namespace TicTacToe
         int playerWins;
         int CompWins;
         public Label[][] board1;
+        Label[][] SCoreBoard;
         Label[] Row1;
         Label[] Row2;
         Label[] Row3;
@@ -40,6 +41,7 @@ namespace TicTacToe
         Label[] names;
         Label[] PlayerWins;
         Label[] COMPWins;
+        Label[] Headers;
 
 
         public Form1()
@@ -54,9 +56,12 @@ namespace TicTacToe
             Columun1 = new Label[] {label1,label4,label7};
             Columun2 = new Label[] { label2, label5, label8 };
             Columun3 = new Label[] { label3, label6, label9 };
-            names = new Label[] {label31,label28 };
-
-
+            names = new Label[] {label31,label28,label25,label22,label16 };
+            PlayerWins = new Label[] { label30, label27,label24,label21,label17 };
+            COMPWins = new Label[] { label29, label26, label23, label20,label18 };
+            Headers = new Label[] { label34, label33, label32 };
+            SCoreBoard = new Label[][] { names, PlayerWins, COMPWins,Headers };
+            
 
             labels = new Label[] { label1, label2, label3, label4, label5, label6, label7, label8, label9 };
             ai = new AI(board1,diagonal1,diagonal2,Columun1,Columun2,Columun3);
@@ -451,19 +456,25 @@ namespace TicTacToe
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var csv = string.Format("{0},{1},{2}", textBox1.Text, playerWins, CompWins);
+            var csv = string.Format("{0},{1},{2};", textBox1.Text, playerWins, CompWins);
             File.AppendAllText("Scores.csv", csv.ToString());
+
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form2 newMDIChild = new Form2();
-            // Set the Parent Form of the Child window.
-            newMDIChild.MdiParent = this;
-            // Display the new form.
-            newMDIChild.Show();
-            
-            panel1.Visible = true;
+            ReadScores();
+            panel1.Show();
+            label19.Show();
+            tableLayoutPanel1.Show();
+            foreach (Label[] labels in SCoreBoard)
+            {
+                foreach (Label label in labels)
+                {
+                    label.Show();
+                }
+            }
         }
         private void ReadScores()
         {
@@ -480,6 +491,7 @@ namespace TicTacToe
                     CompScores.Add(values[2]);
                 }
             }
+            
             int j = 0;
             if (Names.Count() > 5)
             {
@@ -500,6 +512,3 @@ namespace TicTacToe
         }
     }
 }
-    }
-}
-
