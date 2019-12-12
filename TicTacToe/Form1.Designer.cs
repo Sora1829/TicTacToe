@@ -47,24 +47,24 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -291,27 +291,125 @@
             this.tableLayoutPanel1.TabIndex = 3;
             this.tableLayoutPanel1.Visible = false;
             // 
-            // label34
+            // label18
             // 
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(4, 1);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(121, 54);
-            this.label34.TabIndex = 0;
-            this.label34.Text = "Names";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label34.Visible = false;
+            this.label18.Location = new System.Drawing.Point(262, 276);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(122, 55);
+            this.label18.TabIndex = 17;
+            this.label18.Visible = false;
             // 
-            // label33
+            // label17
             // 
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(133, 1);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(121, 54);
-            this.label33.TabIndex = 1;
-            this.label33.Text = "Player Wins";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label33.Visible = false;
+            this.label17.Location = new System.Drawing.Point(133, 276);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(121, 55);
+            this.label17.TabIndex = 16;
+            this.label17.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.Location = new System.Drawing.Point(4, 276);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(121, 55);
+            this.label16.TabIndex = 15;
+            this.label16.Visible = false;
+            // 
+            // label20
+            // 
+            this.label20.Location = new System.Drawing.Point(262, 221);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(122, 54);
+            this.label20.TabIndex = 14;
+            this.label20.Visible = false;
+            // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(133, 221);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(121, 54);
+            this.label21.TabIndex = 13;
+            this.label21.Visible = false;
+            // 
+            // label22
+            // 
+            this.label22.Location = new System.Drawing.Point(4, 221);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(121, 54);
+            this.label22.TabIndex = 12;
+            this.label22.Visible = false;
+            // 
+            // label23
+            // 
+            this.label23.Location = new System.Drawing.Point(262, 166);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(122, 54);
+            this.label23.TabIndex = 11;
+            this.label23.Visible = false;
+            // 
+            // label24
+            // 
+            this.label24.Location = new System.Drawing.Point(133, 166);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(121, 54);
+            this.label24.TabIndex = 10;
+            this.label24.Visible = false;
+            // 
+            // label25
+            // 
+            this.label25.Location = new System.Drawing.Point(4, 166);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(121, 54);
+            this.label25.TabIndex = 9;
+            this.label25.Visible = false;
+            // 
+            // label26
+            // 
+            this.label26.Location = new System.Drawing.Point(262, 111);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(122, 54);
+            this.label26.TabIndex = 8;
+            this.label26.Visible = false;
+            // 
+            // label27
+            // 
+            this.label27.Location = new System.Drawing.Point(133, 111);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(121, 54);
+            this.label27.TabIndex = 7;
+            this.label27.Visible = false;
+            // 
+            // label28
+            // 
+            this.label28.Location = new System.Drawing.Point(4, 111);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(121, 54);
+            this.label28.TabIndex = 6;
+            this.label28.Visible = false;
+            // 
+            // label29
+            // 
+            this.label29.Location = new System.Drawing.Point(262, 56);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(122, 54);
+            this.label29.TabIndex = 5;
+            this.label29.Visible = false;
+            // 
+            // label30
+            // 
+            this.label30.Location = new System.Drawing.Point(133, 56);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(121, 54);
+            this.label30.TabIndex = 4;
+            this.label30.Visible = false;
+            // 
+            // label31
+            // 
+            this.label31.Location = new System.Drawing.Point(4, 56);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(121, 54);
+            this.label31.TabIndex = 3;
+            this.label31.Visible = false;
             // 
             // label32
             // 
@@ -324,125 +422,28 @@
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label32.Visible = false;
             // 
-            // label31
+            // label33
             // 
-            this.label31.Location = new System.Drawing.Point(4, 56);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(121, 54);
-            this.label31.TabIndex = 3;
-            this.label31.Visible = false;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(133, 1);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(121, 54);
+            this.label33.TabIndex = 1;
+            this.label33.Text = "Player Wins";
+            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label33.Visible = false;
             // 
-            // label30
+            // label34
             // 
-            this.label30.Location = new System.Drawing.Point(133, 56);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(121, 54);
-            this.label30.TabIndex = 4;
-            this.label30.Visible = false;
-            // 
-            // label29
-            // 
-            this.label29.Location = new System.Drawing.Point(262, 56);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(122, 54);
-            this.label29.TabIndex = 5;
-            this.label29.Visible = false;
-            // 
-            // label28
-            // 
-            this.label28.Location = new System.Drawing.Point(4, 111);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(121, 54);
-            this.label28.TabIndex = 6;
-            this.label28.Visible = false;
-            // 
-            // label27
-            // 
-            this.label27.Location = new System.Drawing.Point(133, 111);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(121, 54);
-            this.label27.TabIndex = 7;
-            this.label27.Visible = false;
-            // 
-            // label26
-            // 
-            this.label26.Location = new System.Drawing.Point(262, 111);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(122, 54);
-            this.label26.TabIndex = 8;
-            this.label26.Visible = false;
-            // 
-            // label25
-            // 
-            this.label25.Location = new System.Drawing.Point(4, 166);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(121, 54);
-            this.label25.TabIndex = 9;
-            this.label25.Visible = false;
-            // 
-            // label24
-            // 
-            this.label24.Location = new System.Drawing.Point(133, 166);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(121, 54);
-            this.label24.TabIndex = 10;
-            this.label24.Visible = false;
-            // 
-            // label23
-            // 
-            this.label23.Location = new System.Drawing.Point(262, 166);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(122, 54);
-            this.label23.TabIndex = 11;
-            this.label23.Visible = false;
-            // 
-            // label22
-            // 
-            this.label22.Location = new System.Drawing.Point(4, 221);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(121, 54);
-            this.label22.TabIndex = 12;
-            this.label22.Visible = false;
-            // 
-            // label21
-            // 
-            this.label21.Location = new System.Drawing.Point(133, 221);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(121, 54);
-            this.label21.TabIndex = 13;
-            this.label21.Visible = false;
-            // 
-            // label20
-            // 
-            this.label20.Location = new System.Drawing.Point(262, 221);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(122, 54);
-            this.label20.TabIndex = 14;
-            this.label20.Visible = false;
-            // 
-            // label16
-            // 
-            this.label16.Location = new System.Drawing.Point(4, 276);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(121, 55);
-            this.label16.TabIndex = 15;
-            this.label16.Visible = false;
-            // 
-            // label17
-            // 
-            this.label17.Location = new System.Drawing.Point(133, 276);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(121, 55);
-            this.label17.TabIndex = 16;
-            this.label17.Visible = false;
-            // 
-            // label18
-            // 
-            this.label18.Location = new System.Drawing.Point(262, 276);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(122, 55);
-            this.label18.TabIndex = 17;
-            this.label18.Visible = false;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(4, 1);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(121, 54);
+            this.label34.TabIndex = 0;
+            this.label34.Text = "Names";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label34.Visible = false;
+            this.label34.Click += new System.EventHandler(this.label34_Click);
             // 
             // label19
             // 

@@ -504,6 +504,10 @@ private void button3_Click(object sender, EventArgs e)
             {
                 while (!reader.EndOfStream)
                 {
+                    Names.Clear();
+                    Scores.Clear();
+                    CompScores.Clear();
+
                     var line = reader.ReadLine();
                     var values = line.Split(',');
 
@@ -546,5 +550,5 @@ private void button3_Click(object sender, EventArgs e)
                 }
             }
         }
-    }
+
 }
