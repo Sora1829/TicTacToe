@@ -453,16 +453,32 @@ namespace TicTacToe
         }
 
 
-
+        static bool done = false;
         private void button2_Click(object sender, EventArgs e)
         {
-            var csv = string.Format("{0},{1},{2};", textBox1.Text, playerWins, CompWins);
-            File.AppendAllText("Scores.csv", csv.ToString());
-
-           
+            if (textBox1.Text != "")
+            {
+                var csv = string.Format("{0},{1},{2}", textBox1.Text, playerWins, CompWins);
+                File.AppendAllText("Scores.csv", csv.ToString());
+                done = true;
+                button3_Click(null,null);
+            }
         }
+        private void sortData()
+        {
+            var sorted =
+            File.ReadLines(@"Scores.csv")
+            .Select(line => new
+            {
+                SortKey = Int32.Parse(line.Split(',')[1]),
+                Line = line
+            })
+            .OrderByDescending(x => x.SortKey)
+            .Select(x => x.Line);
+            File.WriteAllLines(@"SortedScores.csv", sorted);
+            }
 
-        private void button3_Click(object sender, EventArgs e)
+private void button3_Click(object sender, EventArgs e)
         {
             ReadScores();
             panel1.Show();
@@ -475,10 +491,16 @@ namespace TicTacToe
                     label.Show();
                 }
             }
+            if (done == true)
+            {
+                button4.Hide();
+            }
         }
         private void ReadScores()
         {
-            using (var reader = new StreamReader("Scores.csv"))
+            sortData();
+
+            using (var reader = new StreamReader("SortedScores.csv"))
             {
                 while (!reader.EndOfStream)
                 {
@@ -508,6 +530,20 @@ namespace TicTacToe
                 names[i].Text = Names[i];
                 PlayerWins[i].Text = Scores[i];
                 COMPWins[i].Text = CompScores[i];
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panel1.Hide();
+            label19.Hide();
+            tableLayoutPanel1.Hide();
+            foreach (Label[] labels in SCoreBoard)
+            {
+                foreach (Label label in labels)
+                {
+                    label.Hide();
+                }
             }
         }
     }
