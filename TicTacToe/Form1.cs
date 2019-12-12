@@ -458,7 +458,7 @@ namespace TicTacToe
         {
             if (textBox1.Text != "")
             {
-                var csv = string.Format("{0},{1},{2}", textBox1.Text, playerWins, CompWins);
+                var csv = string.Format("{0},{1},{2}", textBox1.Text, playerWins, CompWins, Environment.NewLine);
                 File.AppendAllText("Scores.csv", csv.ToString());
                 done = true;
                 button3_Click(null,null);
