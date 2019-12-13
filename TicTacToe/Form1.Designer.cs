@@ -443,7 +443,6 @@
             this.label34.Text = "Names";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label34.Visible = false;
-            this.label34.Click += new System.EventHandler(this.label34_Click);
             // 
             // label19
             // 

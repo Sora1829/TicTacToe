@@ -53,18 +53,18 @@ namespace TicTacToe
             board1 = new Label[][] { Row1, Row2, Row3 };
             diagonal1 = new Label[] { label1, label5, label9 };
             diagonal2 = new Label[] { label3, label5, label7 };
-            Columun1 = new Label[] {label1,label4,label7};
+            Columun1 = new Label[] { label1, label4, label7 };
             Columun2 = new Label[] { label2, label5, label8 };
             Columun3 = new Label[] { label3, label6, label9 };
-            names = new Label[] {label31,label28,label25,label22,label16 };
-            PlayerWins = new Label[] { label30, label27,label24,label21,label17 };
-            COMPWins = new Label[] { label29, label26, label23, label20,label18 };
+            names = new Label[] { label31, label28, label25, label22, label16 };
+            PlayerWins = new Label[] { label30, label27, label24, label21, label17 };
+            COMPWins = new Label[] { label29, label26, label23, label20, label18 };
             Headers = new Label[] { label34, label33, label32 };
-            SCoreBoard = new Label[][] { names, PlayerWins, COMPWins,Headers };
-            
+            SCoreBoard = new Label[][] { names, PlayerWins, COMPWins, Headers };
+
 
             labels = new Label[] { label1, label2, label3, label4, label5, label6, label7, label8, label9 };
-            ai = new AI(board1,diagonal1,diagonal2,Columun1,Columun2,Columun3);
+            ai = new AI(board1, diagonal1, diagonal2, Columun1, Columun2, Columun3);
 
 
             Clicks.Add(label1_Click);
@@ -79,7 +79,7 @@ namespace TicTacToe
 
         }
 
-        char[] Board = new char[9] {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+        char[] Board = new char[9] { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 
         Image X = Image.FromFile("X.png");
         Image O = Image.FromFile("O.png");
@@ -87,7 +87,7 @@ namespace TicTacToe
         char turn = 'X';
 
         // Player turn
-        private void PlayerTurn(int x,int y,int pos)
+        private void PlayerTurn(int x, int y, int pos)
         {
             if (textBox1.Text != "")
             {
@@ -149,7 +149,7 @@ namespace TicTacToe
                 }
             }
             else ScoreBoard();
-    }
+        }
 
         private void SplitSpot(int Spot)
         {
@@ -332,13 +332,13 @@ namespace TicTacToe
                 playerWins++;
                 label12.Text = $"{playerWins}";
             }
-            else if (Winner== "O")
+            else if (Winner == "O")
             {
                 CompWins++;
                 label13.Text = $"{CompWins}";
             }
             reset();
-            
+
         }
 
         //Start button Click Events
@@ -347,7 +347,7 @@ namespace TicTacToe
 
             if (turn == 'X' && !win)
             {
-                PlayerTurn(0,0,0);
+                PlayerTurn(0, 0, 0);
             }
 
         }
@@ -380,7 +380,7 @@ namespace TicTacToe
         {
             if (turn == 'X' && !win)
             {
-                PlayerTurn(1,1,4);
+                PlayerTurn(1, 1, 4);
             }
         }
 
@@ -388,7 +388,7 @@ namespace TicTacToe
         {
             if (turn == 'X' && !win)
             {
-                PlayerTurn(1,2,5);
+                PlayerTurn(1, 2, 5);
             }
         }
 
@@ -396,7 +396,7 @@ namespace TicTacToe
         {
             if (turn == 'X' && !win)
             {
-                PlayerTurn(2,0,6);
+                PlayerTurn(2, 0, 6);
             }
         }
 
@@ -461,7 +461,7 @@ namespace TicTacToe
                 var csv = string.Format("{0},{1},{2}", textBox1.Text, playerWins, CompWins, Environment.NewLine);
                 File.AppendAllText("Scores.csv", csv.ToString());
                 done = true;
-                button3_Click(null,null);
+                button3_Click(null, null);
             }
         }
         private void sortData()
@@ -476,9 +476,9 @@ namespace TicTacToe
             .OrderByDescending(x => x.SortKey)
             .Select(x => x.Line);
             File.WriteAllLines(@"SortedScores.csv", sorted);
-            }
+        }
 
-private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             ReadScores();
             panel1.Show();
@@ -517,7 +517,7 @@ private void button3_Click(object sender, EventArgs e)
                     CompScores.Add(values[2]);
                 }
             }
-            
+
             int j = 0;
             if (Names.Count() > 5)
             {
@@ -550,5 +550,5 @@ private void button3_Click(object sender, EventArgs e)
                 }
             }
         }
-
+    }
 }
